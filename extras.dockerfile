@@ -11,7 +11,10 @@ FROM $USER_BASE_IMG
 RUN rm -r /var/lib/apt/lists/* \
     && apt-get update -q \
     && apt-get install -y --no-install-recommends \
-        # Add more dependencies here
+        clang-tidy \
+        cppcheck \
+        doxygen \
+        graphviz \
         cowsay \
         sudo \
     && apt-get clean autoclean \
