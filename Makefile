@@ -303,6 +303,11 @@ user_camkes: build_user_camkes user_run
 .PHONY: user_camkes-riscv
 user_camkes-riscv: build_user_camkes-riscv user_run
 
+.PHONY: user_camkes-vis
+# needed because camkesVisual can not work without the display connection
+user_camkes-vis: DOCKER_RUN_FLAGS += -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=:0
+user_camkes-vis: build_user_camkes-vis user_run
+
 .PHONY: user_l4v
 user_l4v: build_user_l4v user_run_l4v
 
@@ -374,6 +379,8 @@ build_user_camkes: USER_BASE_IMG = $(CAMKES_IMG)
 build_user_camkes: build_user
 build_user_camkes-riscv: USER_BASE_IMG = $(CAMKES_RISCV_IMG)
 build_user_camkes-riscv: build_user
+build_user_camkes-vis: USER_BASE_IMG = $(CAMKES_VIS_IMG)
+build_user_camkes-vis: build_user
 build_user_l4v: USER_BASE_IMG = $(L4V_IMG)
 build_user_l4v: build_user
 build_user_l4v-riscv: USER_BASE_IMG = $(L4V_RISCV_IMG)
