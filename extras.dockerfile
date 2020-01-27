@@ -8,7 +8,7 @@ FROM $USER_BASE_IMG
 # For example, uncomment this to get cowsay on top of the sel4/camkes/l4v
 # dependencies:
 
-RUN rm -r /var/lib/apt/lists/* \
+RUN rm -rf /var/lib/apt/lists/* \
     && apt-get update -q \
     && apt-get install -y --no-install-recommends \
         clang-tidy \
